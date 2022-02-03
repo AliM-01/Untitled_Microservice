@@ -1,3 +1,5 @@
+using Catalog.Api.Data;
+using Catalog.Api.Data.Interfaces;
 using Catalog.Api.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,8 @@ IConfiguration configuration = builder.Configuration;
 builder.Services.Configure<CatalogDbSettings>(configuration.GetSection("CatalogDbSettings"));
 
 builder.Services.AddSingleton<ICatalogDbSettings>(sp => sp.GetRequiredService<CatalogDbSettings>());
+
+builder.Services.AddTransient<ICatalogDbContext, CatalogDbContext>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
