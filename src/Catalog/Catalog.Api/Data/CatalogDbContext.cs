@@ -1,4 +1,5 @@
 ﻿using Catalog.Api.Data.Interfaces;
+using Catalog.Api.Data.Seeds;
 using Catalog.Api.Settings;
 
 namespace Catalog.Api.Data;
@@ -14,6 +15,8 @@ public class CatalogDbContext : ICatalogDbContext
         var db = client.GetDatabase(settings.DbName);
 
         Products = db.GetCollection<Product>(settings.CollectionName);
+
+        CatalogDbContextSeed.SeedData(Products);
     }
 
     #endregion
