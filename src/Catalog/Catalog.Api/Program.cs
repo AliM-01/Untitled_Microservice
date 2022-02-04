@@ -1,5 +1,7 @@
 using Catalog.Api.Data;
 using Catalog.Api.Data.Interfaces;
+using Catalog.Api.Repositories;
+using Catalog.Api.Repositories.Interfaces;
 using Catalog.Api.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.Configure<CatalogDbSettings>(configuration.GetSection("CatalogD
 builder.Services.AddSingleton<ICatalogDbSettings>(sp => sp.GetRequiredService<CatalogDbSettings>());
 
 builder.Services.AddTransient<ICatalogDbContext, CatalogDbContext>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
