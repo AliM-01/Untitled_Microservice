@@ -8,9 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 IConfiguration configuration = builder.Configuration;
 
+var settings = new CatalogDbSettings();
+configuration.GetSection("CatalogDbSettings").Bind(settings);
 builder.Services.Configure<CatalogDbSettings>(configuration.GetSection("CatalogDbSettings"));
 
-builder.Services.AddSingleton<ICatalogDbSettings>(sp => sp.GetRequiredService<CatalogDbSettings>());
+builder.Services.AddSingleton<ICatalogDbSettings>(sp => settings);
 
 builder.Services.AddTransient<ICatalogDbContext, CatalogDbContext>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();

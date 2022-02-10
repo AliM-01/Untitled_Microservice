@@ -2,10 +2,10 @@ version: '3.4'
 
 services:
 
-  catalogdb:
+  catalog_db:
     image: mongo
 
-  catalog.api:
+  catalog_api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
