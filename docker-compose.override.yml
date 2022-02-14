@@ -9,17 +9,25 @@ services:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
     ports:
       - "27017:27017"
-  
+
+  catalog_db_mongo_express:
+    container_name: catalog_db_mongo_express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: AaMm5227
+    depends_on:
+      - catalog_db
 
   catalog_api:
     container_name: catalog_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - CatalogDbSettings:ConnectionString=mongodb://catalogdb:27017
+      - CatalogDbSettings:Host=catalog_db
     depends_on:
-      - catalog_db
+      - catalog_db_mongo_express
     ports:
-      - "5010:80"
-    volumes:
-      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-      - ${HOME}/.aspnet/https/:/root/.aspnet/https/
+      - "6058:80"
+      - "7058:443"
