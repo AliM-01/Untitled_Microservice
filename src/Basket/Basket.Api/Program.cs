@@ -1,3 +1,7 @@
+using Basket.Api.Data;
+using Basket.Api.Data.Interfaces;
+using Basket.Api.Repositories;
+using Basket.Api.Repositories.Interfaces;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +12,9 @@ builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
 
     return ConnectionMultiplexer.Connect(config);
 });
+
+builder.Services.AddTransient<IBasketContext, BasketContext>();
+builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
