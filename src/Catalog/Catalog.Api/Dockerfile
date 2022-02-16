@@ -10,6 +10,7 @@ RUN dotnet restore "src/Catalog/Catalog.Api/Catalog.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Catalog/Catalog.Api"
 RUN dotnet build "Catalog.Api.csproj" -c Release -o /app/build
+EXPOSE 80
 
 FROM build AS publish
 RUN dotnet publish "Catalog.Api.csproj" -c Release -o /app/publish

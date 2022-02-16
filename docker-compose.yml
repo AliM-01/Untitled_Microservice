@@ -5,9 +5,6 @@ services:
   catalog_db:
     image: mongo
 
-  catalog_db_mongo_express:
-    image: mongo-express
-
   catalog_api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
