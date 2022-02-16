@@ -1,6 +1,7 @@
 ﻿using Catalog.Api.Data.Interfaces;
 using Catalog.Api.Data.Seeds;
 using Catalog.Api.Settings;
+using Microsoft.Extensions.Options;
 
 namespace Catalog.Api.Data;
 
@@ -8,13 +9,16 @@ public class CatalogDbContext : ICatalogDbContext
 {
     #region ctor
 
-    public CatalogDbContext(ICatalogDbSettings settings)
+    private readonly CatalogDbSettings _settings;
+    public CatalogDbContext(IOptionsSnapshot<CatalogDbSettings> settings)
     {
-        var client = new MongoClient(settings.ConnectionString);
+        _settings = settings.Value;
 
-        var db = client.GetDatabase(settings.DbName);
+        var client = new MongoClient(_settings.ConnectionString);
 
-        Products = db.GetCollection<Product>(settings.CollectionName);
+        var db = client.GetDatabase(_settings.DbName);
+
+        Products = db.GetCollection<Product>(_settings.CollectionName);
 
         CatalogDbContextSeed.SeedData(Products);
     }

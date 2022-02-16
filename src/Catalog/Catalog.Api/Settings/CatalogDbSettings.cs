@@ -1,23 +1,5 @@
 ﻿namespace Catalog.Api.Settings;
-
-public interface ICatalogDbSettings
-{
-    string ConnectionString { get; }
-
-    string DbName { get; set; }
-
-    string Host { get; set; }
-
-    int Port { get; set; }
-
-    string User { get; set; }
-
-    string Password { get; set; }
-
-    string CollectionName { get; set; }
-}
-
-public class CatalogDbSettings : ICatalogDbSettings
+public class CatalogDbSettings
 {
     public string ConnectionString
     {
@@ -30,7 +12,7 @@ public class CatalogDbSettings : ICatalogDbSettings
         }
 
     }
-
+    
     public string DbName { get; set; }
 
     public string Host { get; set; }
