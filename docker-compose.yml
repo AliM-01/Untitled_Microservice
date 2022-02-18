@@ -2,20 +2,20 @@ version: '3.4'
 
 services:
 
-  catalog_db:
+  um_catalog_db:
     image: mongo
 
-  catalog_api:
-    image: ${DOCKER_REGISTRY-}catalogapi
+  um_catalog_api:
+    image: ${DOCKER_REGISTRY-}um_catalogapi
     build:
       context: .
       dockerfile: src/Catalog/Catalog.Api/Dockerfile
 
-  basket_db:
+  um_basket_db:
     image: redis
 
-  basket_api:
-    image: ${DOCKER_REGISTRY-}basketapi
+  um_basket_api:
+    image: ${DOCKER_REGISTRY-}um_basketapi
     build:
       context: .
       dockerfile: src/Basket/Basket.Api/Dockerfile
