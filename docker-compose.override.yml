@@ -16,4 +16,19 @@ services:
     depends_on:
       - catalog_db
     ports:
-      - "6058:80"
+      - "6050:80"
+
+  basket_db:
+    container_name: basket_db
+    restart: always
+    ports:
+      - "6379:6379"
+
+  basket_api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT="Production"
+      - "ConnectionStrings__Redis=basket_db:6379"
+    depends_on:
+      - basket_db
+    ports:
+      - "6051:80"

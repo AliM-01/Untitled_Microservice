@@ -10,3 +10,12 @@ services:
     build:
       context: .
       dockerfile: src/Catalog/Catalog.Api/Dockerfile
+
+  basket_db:
+    image: redis
+
+  basket_api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: src/Basket/Basket.Api/Dockerfile
