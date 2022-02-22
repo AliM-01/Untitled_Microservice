@@ -20,6 +20,8 @@ builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
 builder.Services.AddTransient<IBasketContext, BasketContext>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

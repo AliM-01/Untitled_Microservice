@@ -2,7 +2,7 @@
 
 public class BasketCheckoutEvent
 {
-    public Guid RequestId { get; set; }
+    public Guid RequestId { get; set; } = Guid.NewGuid();
 
     public string UserName { get; set; }
 
