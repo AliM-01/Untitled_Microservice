@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Basket.Api.Entities;
 using Basket.Api.Repositories.Interfaces;
+using EventBusRabbitMQ.Common;
 using EventBusRabbitMQ.Events;
+using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -14,18 +16,20 @@ public class BasketController : ControllerBase
     #region ctor
 
     private readonly IBasketRepository _basketRepository;
+    private readonly EvenBusProducer _evenBus;
     private readonly ILogger<BasketController> _logger;
     private readonly IMapper _mapper;
 
     public BasketController(IBasketRepository basketRepository,
                             ILogger<BasketController> logger,
+                            EvenBusProducer evenBus,
                             IMapper mapper)
     {
         _basketRepository = basketRepository;
+        _evenBus = evenBus;
         _logger = logger;
         _mapper = mapper;
     }
-
     #endregion
 
     [HttpGet]
@@ -50,7 +54,7 @@ public class BasketController : ControllerBase
     }
 
     [HttpPost("checkout")]
-    [ProducesResponseType((int)HttpStatusCode.Accepted)]
+    [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
     {
@@ -69,6 +73,15 @@ public class BasketController : ControllerBase
         eventMessage.RequestId = Guid.NewGuid();
         eventMessage.TotalPrice = basket.TotalPrice;
 
-        return Accepted();
+        try
+        {
+            _evenBus.PublishBasketCheckout(EventBusConstants.BasketCheckoutQueue, eventMessage);
+            return Accepted();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return BadRequest();
+        }
     }
 }
