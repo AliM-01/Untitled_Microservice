@@ -22,12 +22,12 @@ services:
     container_name: um_basket_db
     restart: always
     ports:
-      - "6379:6379"
+      - "5002:6379"
 
   um_basket_api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__Redis=um_basket_db:6379
+      - ConnectionStrings__Redis=um_basket_db
     depends_on:
       - um_basket_db
     ports:
