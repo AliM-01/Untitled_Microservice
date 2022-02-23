@@ -2,6 +2,10 @@ version: '3.4'
 
 services:
 
+  um_rabbit_mq:
+    container_name: um_rabbit_mq
+    image: rabbitmq:3-management
+
   um_catalog_db:
     container_name: um_catalog_db
     image: mongo

@@ -2,6 +2,13 @@ version: '3.4'
 
 services:
 
+  um_rabbit_mq:
+    container_name: um_rabbit_mq
+    restart: always
+    ports:
+      - "4010:5672"
+      - "4020:5672"
+
   um_catalog_db:
     container_name: um_catalog_db
     restart: always
@@ -28,7 +35,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__Redis=um_basket_db
+      - EventBus__HostName=um_rabbit_mq
     depends_on:
       - um_basket_db
+      - um_rabbit_mq
     ports:
       - "6051:80"

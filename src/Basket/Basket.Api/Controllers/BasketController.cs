@@ -41,7 +41,7 @@ public class BasketController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(BasketCart), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> UpdateBasket([FromBody] BasketCart cart)
+    public async Task<IActionResult> UpdateBasket([FromForm] BasketCart cart)
     {
         return Ok(await _basketRepository.UpdateBasket(cart));
     }
