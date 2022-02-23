@@ -3,6 +3,7 @@ using Basket.Api.Data.Interfaces;
 using Basket.Api.Repositories;
 using Basket.Api.Repositories.Interfaces;
 using EventBusRabbitMQ;
+using EventBusRabbitMQ.Producer;
 using RabbitMQ.Client;
 using StackExchange.Redis;
 
@@ -43,6 +44,8 @@ builder.Services.AddSingleton<IRabbitMQConnection>(sp =>
 
     return new RabbitMQConnection(factory);
 });
+
+builder.Services.AddSingleton<EvenBusProducer>();
 
 #endregion
 

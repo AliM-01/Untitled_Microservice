@@ -56,7 +56,7 @@ public class BasketController : ControllerBase
     [HttpPost("checkout")]
     [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
+    public async Task<IActionResult> Checkout([FromForm] BasketCheckout basketCheckout)
     {
         var basket = await _basketRepository.GetBasket(basketCheckout.UserName);
 
