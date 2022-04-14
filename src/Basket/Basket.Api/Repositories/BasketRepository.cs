@@ -34,7 +34,7 @@ public class BasketRepository : IBasketRepository
 
     public async Task<BasketCart> UpdateBasket(BasketCart cart)
     {
-        var updated = await _context.Redis.StringSetAsync(cart.UserName, JsonConvert.SerializeObject(cart));
+        bool updated = await _context.Redis.StringSetAsync(cart.UserName, JsonConvert.SerializeObject(cart));
 
         if (!updated)
         {

@@ -1,7 +1,6 @@
-﻿using EventBusRabbitMQ.Events;
+﻿using System.Text;
+using EventBusRabbitMQ.Events;
 using Newtonsoft.Json;
-using RabbitMQ.Client;
-using System.Text;
 
 namespace EventBusRabbitMQ.Producer;
 
@@ -23,10 +22,10 @@ public class EvenBusProducer
         using (var channel = _connection.CreateModel())
         {
             channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
-            var message = JsonConvert.SerializeObject(publishModel);
-            var body = Encoding.UTF8.GetBytes(message);
+            string message = JsonConvert.SerializeObject(publishModel);
+            byte[] body = Encoding.UTF8.GetBytes(message);
 
-            IBasicProperties properties = channel.CreateBasicProperties();
+            var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
             properties.DeliveryMode = 2;
 

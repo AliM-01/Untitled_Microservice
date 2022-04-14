@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using Basket.Api.Entities;
 using Basket.Api.Repositories.Interfaces;
 using EventBusRabbitMQ.Common;
 using EventBusRabbitMQ.Events;
 using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Basket.Api.Controllers;
 
@@ -66,7 +66,7 @@ public class BasketController : ControllerBase
             return BadRequest();
         }
 
-        var basketToRemove = await _basketRepository.DeleteBasket(basket.UserName);
+        bool basketToRemove = await _basketRepository.DeleteBasket(basket.UserName);
 
         if (!basketToRemove)
         {
