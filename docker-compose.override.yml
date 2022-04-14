@@ -4,10 +4,9 @@ services:
 
   um_rabbit_mq:
     container_name: um_rabbit_mq
-    restart: always
     ports:
-      - "4010:5672"
-      - "4020:5672"
+      - "5672:5672"
+      - "15672:15672"
 
   um_catalog_db:
     container_name: um_catalog_db
@@ -19,7 +18,7 @@ services:
     container_name: um_catalog_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - CatalogDbSettings__Host=um_catalog_db
+      - "CatalogDbSettings:Host=um_catalog_db"
     depends_on:
       - um_catalog_db
     ports:
@@ -34,8 +33,8 @@ services:
   um_basket_api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__Redis=um_basket_db
-      - EventBus__HostName=um_rabbit_mq
+      - "ConnectionStrings:Redis=um_basket_db"
+      - "EventBus:HostName=um_rabbit_mq"
     depends_on:
       - um_basket_db
       - um_rabbit_mq
