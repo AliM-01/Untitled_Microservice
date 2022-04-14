@@ -41,7 +41,7 @@ public class BasketController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(BasketCart), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> UpdateBasket([FromForm] BasketCart cart)
+    public async Task<IActionResult> UpdateBasket([FromBody] BasketCart cart)
     {
         return Ok(await _basketRepository.UpdateBasket(cart));
     }
@@ -56,17 +56,23 @@ public class BasketController : ControllerBase
     [HttpPost("checkout")]
     [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> Checkout([FromForm] BasketCheckout basketCheckout)
+    public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
     {
         var basket = await _basketRepository.GetBasket(basketCheckout.UserName);
 
         if (basket is null)
+        {
+            _logger.LogError("Basket is null");
             return BadRequest();
+        }
 
         var basketToRemove = await _basketRepository.DeleteBasket(basket.UserName);
 
         if (!basketToRemove)
+        {
+            _logger.LogError("!BasketToRemove");
             return BadRequest();
+        }
 
         var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketCheckout);
 

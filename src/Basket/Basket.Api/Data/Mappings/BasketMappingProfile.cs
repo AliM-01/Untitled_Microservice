@@ -8,6 +8,6 @@ public class BasketMappingProfile : Profile
 {
     public BasketMappingProfile()
     {
-        CreateMap<BasketCart, BasketCheckoutEvent>();
+        CreateMap<BasketCheckout, BasketCheckoutEvent>();
     }
 }

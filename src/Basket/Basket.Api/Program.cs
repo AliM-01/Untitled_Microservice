@@ -1,5 +1,6 @@
 using Basket.Api.Data;
 using Basket.Api.Data.Interfaces;
+using Basket.Api.Data.Mappings;
 using Basket.Api.Repositories;
 using Basket.Api.Repositories.Interfaces;
 using EventBusRabbitMQ;
@@ -21,7 +22,7 @@ builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
 builder.Services.AddTransient<IBasketContext, BasketContext>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
 
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(BasketMappingProfile));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
