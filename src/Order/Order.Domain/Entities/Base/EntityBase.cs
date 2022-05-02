@@ -4,7 +4,7 @@ public abstract class EntityBase<TId> : IEntityBase<TId>
 {
     public virtual TId Id { get; protected set; }
 
-    public int? _requestedHashCode;
+    private int? _requestedHashCode;
 
     public bool IsTransient()
     {
