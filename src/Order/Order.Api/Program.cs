@@ -6,10 +6,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Host
-    .ConfigureHostOptions(o => o.ShutdownTimeout = TimeSpan.FromSeconds(30))
-    .Build()
-    .CreateAndSeedDatabaseAsync();
+builder.Services.CreateAndSeedDatabaseAsync();
 
 var app = builder.Build();
 

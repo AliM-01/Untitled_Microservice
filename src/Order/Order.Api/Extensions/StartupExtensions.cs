@@ -4,9 +4,9 @@ namespace Order.Api.Extensions;
 
 public static class StartupExtensions
 {
-    public static void CreateAndSeedDatabaseAsync(this IHost host)
+    public static void CreateAndSeedDatabaseAsync(this IServiceCollection services)
     {
-        using var scope = host.Services.CreateScope();
+        using var scope = services.BuildServiceProvider().CreateScope();
 
         var sp = scope.ServiceProvider;
         var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
