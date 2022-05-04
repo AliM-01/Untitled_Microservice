@@ -114,5 +114,13 @@ public class BaseRepository<T> : IRepository<T> where T : Entity
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task DeleteAsync(long id)
+    {
+        var entity = await GetByIdAsync(id);
+
+        _dbContext.Set<T>().Remove(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+
     #endregion
 }
