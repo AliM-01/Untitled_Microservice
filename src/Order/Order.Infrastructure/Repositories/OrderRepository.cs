@@ -17,7 +17,7 @@ public class OrderRepository : BaseRepository<Domain.Entities.Order>, IOrderRepo
 
     #region GetOrderByUserName
 
-    public async Task<IEnumerable<Domain.Entities.Order>> GetOrderByUserName(string userName)
+    public async Task<IEnumerable<Domain.Entities.Order>> GetOrdersByUserName(string userName)
     {
         return await _dbContext.Orders
             .Where(u => EF.Functions.Like(u.UserName, $"%{userName}%"))
