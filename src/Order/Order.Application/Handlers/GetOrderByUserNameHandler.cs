@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Order.Application.Queries;
+﻿using Order.Application.Queries;
 using Order.Domain.Repositories;
 
 namespace Order.Application.Handlers;
