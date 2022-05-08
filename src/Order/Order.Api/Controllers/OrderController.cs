@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Order.Application.Commands;
 using Order.Application.DTOs;
 using Order.Application.Queries;
 
@@ -35,5 +36,17 @@ public class OrderController : ControllerBase
 
     #endregion
 
+    #region CheckoutOrder
 
+    [HttpPost]
+    [ProducesResponseType(typeof(OrderResponseDto), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> CheckoutOrder([FromBody] CheckoutOrderRequestDto checkout, CancellationToken cancellationToken)
+    {
+        var command = new CheckoutOrderCommand(checkout);
+        var result = await _mediator.Send(command, cancellationToken);
+
+        return Ok(result);
+    }
+
+    #endregion
 }
