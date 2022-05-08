@@ -1,4 +1,5 @@
 using System.Reflection;
+using EventBusRabbitMQ;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Order.Api.Extensions;
@@ -8,6 +9,7 @@ using Order.Domain.Repositories.Base;
 using Order.Infrastructure.Data;
 using Order.Infrastructure.Repositories;
 using Order.Infrastructure.Repositories.Base;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,27 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region RabbitMQ
+
+builder.Services.AddSingleton<IRabbitMQConnection>(sp =>
+{
+    var factory = new ConnectionFactory()
+    {
+        HostName = builder.Configuration["EventBus:HostName"]
+    };
+
+    if (!string.IsNullOrEmpty(builder.Configuration["EventBus:UserName"]))
+    {
+        factory.UserName = builder.Configuration["EventBus:UserName"];
+        factory.Password = builder.Configuration["EventBus:Password"];
+    }
+
+    return new RabbitMQConnection(factory);
+});
+
+//builder.Services.AddSingleton<EvenBusProducer>();
+
+#endregion
 var app = builder.Build();
 
 app.UseSwagger();
