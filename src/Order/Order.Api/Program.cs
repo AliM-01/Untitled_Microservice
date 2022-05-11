@@ -3,6 +3,7 @@ using EventBusRabbitMQ;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Order.Api.Extensions;
+using Order.Api.RabbitMQ;
 using Order.Application;
 using Order.Domain.Repositories;
 using Order.Domain.Repositories.Base;
@@ -48,7 +49,7 @@ builder.Services.AddSingleton<IRabbitMQConnection>(sp =>
     return new RabbitMQConnection(factory);
 });
 
-//builder.Services.AddSingleton<EvenBusProducer>();
+builder.Services.AddSingleton<EvenBusConsumer>();
 
 #endregion
 var app = builder.Build();
