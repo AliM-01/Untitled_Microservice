@@ -16,17 +16,17 @@ public class BasketController : ControllerBase
     #region ctor
 
     private readonly IBasketRepository _basketRepository;
-    private readonly EvenBusProducer _evenBus;
+    private readonly EventBusProducer _eventBus;
     private readonly ILogger<BasketController> _logger;
     private readonly IMapper _mapper;
 
     public BasketController(IBasketRepository basketRepository,
                             ILogger<BasketController> logger,
-                            EvenBusProducer evenBus,
+                            EventBusProducer eventBus,
                             IMapper mapper)
     {
         _basketRepository = basketRepository;
-        _evenBus = evenBus;
+        _eventBus = eventBus;
         _logger = logger;
         _mapper = mapper;
     }
@@ -81,7 +81,7 @@ public class BasketController : ControllerBase
 
         try
         {
-            _evenBus.PublishBasketCheckout(EventBusConstants.BasketCheckoutQueue, eventMessage);
+            _eventBus.PublishBasketCheckout(EventBusConstants.BasketCheckoutQueue, eventMessage);
             return Accepted();
         }
         catch (Exception ex)

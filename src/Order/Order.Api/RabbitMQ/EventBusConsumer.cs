@@ -13,7 +13,7 @@ using RabbitMQ.Client.Events;
 
 namespace Order.Api.RabbitMQ;
 
-public class EvenBusConsumer
+public class EventBusConsumer
 {
     #region ctor
 
@@ -22,7 +22,7 @@ public class EvenBusConsumer
     private readonly IMapper _mapper;
     private readonly IOrderRepository _repository;
 
-    public EvenBusConsumer(IRabbitMQConnection connection,
+    public EventBusConsumer(IRabbitMQConnection connection,
                            IMediator mediator,
                            IMapper mapper,
                            IOrderRepository repository)

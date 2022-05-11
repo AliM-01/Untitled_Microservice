@@ -4,13 +4,13 @@ using Newtonsoft.Json;
 
 namespace EventBusRabbitMQ.Producer;
 
-public class EvenBusProducer
+public class EventBusProducer
 {
     #region ctor
 
     private readonly IRabbitMQConnection _connection;
 
-    public EvenBusProducer(IRabbitMQConnection connection)
+    public EventBusProducer(IRabbitMQConnection connection)
     {
         _connection = connection;
     }

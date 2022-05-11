@@ -49,7 +49,7 @@ builder.Services.AddSingleton<IRabbitMQConnection>(sp =>
     return new RabbitMQConnection(factory);
 });
 
-builder.Services.AddSingleton<EvenBusConsumer>();
+builder.Services.AddSingleton<EventBusConsumer>();
 
 #endregion
 var app = builder.Build();
