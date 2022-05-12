@@ -10,6 +10,14 @@ services:
     container_name: um_catalog_db
     image: mongo
 
+  um_basket_db:
+    container_name: um_basket_db
+    image: redis
+
+  um_order_db:
+    container_name: um_order_db
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   um_catalog_api:
     container_name: um_catalog_api
     image: ${DOCKER_REGISTRY-}um_catalogapi
@@ -17,13 +25,16 @@ services:
       context: .
       dockerfile: src/Catalog/Catalog.Api/Dockerfile
 
-  um_basket_db:
-    container_name: um_basket_db
-    image: redis
-
   um_basket_api:
     container_name: um_basket_api
-    image: ${DOCKER_REGISTRY-}um_basketapi
+    image: ${DOCKER_REGISTRY-}um_basket_api
     build:
       context: .
       dockerfile: src/Basket/Basket.Api/Dockerfile
+
+  um_order_api:
+    container_name: um_order_api
+    image: ${DOCKER_REGISTRY-}um_order_api
+    build:
+      context: .
+      dockerfile: src/Order/Order.Api/Dockerfile

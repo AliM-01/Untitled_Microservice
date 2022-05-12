@@ -14,23 +14,39 @@ services:
     ports:
       - "27017:27017"
 
-  um_catalog_api:
-    container_name: um_catalog_api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - "CatalogDbSettings:Host=um_catalog_db"
-    depends_on:
-      - um_catalog_db
-    ports:
-      - "6050:80"
-
   um_basket_db:
     container_name: um_basket_db
     restart: always
     ports:
       - "5002:6379"
 
+  um_order_db:
+    container_name: um_order_db
+    restart: always
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=yourStrong(!)Password"
+      - "MSSQL_PID=Developer"
+    ports:
+      - "1400:1433"
+
+  um_catalog_api:
+    container_name: um_catalog_api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - "CatalogDbSettings:Host=um_catalog_db"
+    depends_on:
+      - um_catalog_db
+    volumes:
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - ${HOME}/.aspnet/https/:/root/.aspnet/https/
+    ports:
+      - "6050:80"
+
   um_basket_api:
+    container_name: um_basket_api
+    restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - "ConnectionStrings:Redis=um_basket_db"
@@ -38,5 +54,24 @@ services:
     depends_on:
       - um_basket_db
       - um_rabbit_mq
+    volumes:
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - ${HOME}/.aspnet/https/:/root/.aspnet/https/
     ports:
       - "6051:80"
+
+  um_order_api:
+    container_name: um_order_api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - "ConnectionStrings:OrderDb=Server=um_order_db;Database=OrderDb;User Id=sa;Password=yourStrong(!)Password"
+      - "EventBus:HostName=um_rabbit_mq"
+    depends_on:
+      - um_order_db
+      - um_rabbit_mq
+    volumes:
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - ${HOME}/.aspnet/https/:/root/.aspnet/https/
+    ports:
+      - "6052:80"
