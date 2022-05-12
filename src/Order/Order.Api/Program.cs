@@ -24,6 +24,11 @@ builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper((sp, autoMapper) =>
+        {
+            autoMapper.AddProfile(typeof(Order.Application.Mappings.OrderMappingProfile));
+            autoMapper.AddProfile(typeof(Order.Api.Mapping.OrderMappingProfile));
+        }, typeof(Program).Assembly);
 
 builder.Services.AddMediatR(typeof(IOrderApplicationAssemblyMarker).GetTypeInfo().Assembly);
 
