@@ -19,13 +19,13 @@ builder.Services.AddDbContext<OrderDbContext>(options =>
 
 builder.Services.CreateAndSeedDatabaseAsync();
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddMediatR(typeof(IOrderApplicationAssemblyMarker).GetTypeInfo().Assembly);
-
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -52,6 +52,7 @@ builder.Services.AddSingleton<IRabbitMQConnection>(sp =>
 builder.Services.AddSingleton<EventBusConsumer>();
 
 #endregion
+
 var app = builder.Build();
 
 app.UseSwagger();
@@ -62,5 +63,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseRabbitListerner();
 
 app.Run();
