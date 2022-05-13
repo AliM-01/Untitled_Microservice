@@ -38,3 +38,11 @@ services:
     build:
       context: .
       dockerfile: src/Order/Order.Api/Dockerfile
+
+  um_ocelot_api_gateway:
+    container_name: um_ocelot_api_gateway
+    image: ${DOCKER_REGISTRY-}um_ocelot_api_gateway
+    build:
+      context: .
+      dockerfile: src/ApiGateway/Ocelot.ApiGateway/Dockerfile
+
