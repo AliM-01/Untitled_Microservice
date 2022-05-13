@@ -1,0 +1,108 @@
+{
+  "ReRoutes": [
+
+    // Catalog API
+    {
+      "DownstreamPathTemplate": "api/v1/catalog",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "api/v1/catalog/{id}",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "api/v1/catalog/product/{category}",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog/product/{category}",
+      "UpstreamHttpMethod": [ "GET" ]
+
+    },
+
+    // Basket API
+    {
+      "DownstreamPathTemplate": "api/v1/basket",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/basket",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "api/v1/basket/{username}",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/basket/{username}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "api/v1/basket/checkout",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/basket/checkout",
+      "UpstreamHttpMethod": [ "POST" ]
+
+    },
+
+    // Order API
+    {
+      "DownstreamPathTemplate": "api/v1/order",
+      "DownstreamPathSchema": "http",
+      "DownstreamPathHostAndPorts": [
+        {
+          "Host": "um_order_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "GET" ]
+
+    }
+  ]
+}

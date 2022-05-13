@@ -8,7 +8,7 @@ using Order.Application.Queries;
 namespace Order.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/order")]
 public class OrderController : ControllerBase
 {
     #region ctor

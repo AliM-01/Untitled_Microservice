@@ -1,6 +1,6 @@
-﻿using Catalog.Api.Repositories.Interfaces;
+﻿using System.Net;
+using Catalog.Api.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Catalog.Api.Controllers;
 
@@ -29,7 +29,7 @@ public class CatalogController : ControllerBase
         return Ok(products);
     }
 
-    [HttpGet("id/{id:length(24)}", Name = "GetProduct")]
+    [HttpGet("{id:length(24)}", Name = "GetProduct")]
     [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetProductById(string id)
     {
@@ -44,7 +44,7 @@ public class CatalogController : ControllerBase
         return Ok(product);
     }
 
-    [HttpGet("cat/{category}")]
+    [HttpGet("product/{category}")]
     [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetProductByCategory(string category)
     {
@@ -59,7 +59,7 @@ public class CatalogController : ControllerBase
         return Ok(product);
     }
 
-    [HttpPost("create")]
+    [HttpPost]
     public async Task<IActionResult> CreateProduct([FromBody] Product product)
     {
         await _productRepository.CreateProduct(product);
@@ -67,7 +67,7 @@ public class CatalogController : ControllerBase
         return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
     }
 
-    [HttpPut("update")]
+    [HttpPut]
     public async Task<IActionResult> UpdateProduct([FromBody] Product product)
     {
         await _productRepository.UpdateProduct(product);
@@ -75,7 +75,7 @@ public class CatalogController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete("delete/{id:length(24)}")]
+    [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> UpdateProduct(string id)
     {
         await _productRepository.DeleteProduct(id);
