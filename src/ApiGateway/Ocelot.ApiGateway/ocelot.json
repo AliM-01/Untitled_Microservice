@@ -1,0 +1,105 @@
+{
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/api/v1/catalog",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/catalog/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/catalog/product/{category}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_catalog_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/catalog/product/{category}",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/basket",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/basket",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/basket/{username}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/basket/{username}",
+      "UpstreamHttpMethod": [ "Delete" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/basket/checkout",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_basket_api",
+          "Port": "80"
+        }
+      ], 
+
+      "UpstreamPathTemplate": "/basket/checkout",
+      "UpstreamHttpMethod": [ "Post" ]
+
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_order_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    }
+  ]
+}
