@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ApiClient\NewFolder\" />
+  </ItemGroup>
+
 </Project>
