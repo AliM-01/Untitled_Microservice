@@ -1,36 +1,38 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Polly;
 
 namespace Order.Infrastructure.Data;
 
 public class OrderDbContextSeed
 {
-    public static async Task SeedAsync(OrderDbContext orderDbContext, ILoggerFactory loggerFactory, int? retry = 0)
+    private const int MAX_RETRIES = 3;
+
+    public static async Task SeedAsync(OrderDbContext orderDbContext, ILoggerFactory loggerFactory)
     {
-        int retryValue = retry.Value;
+        var logger = loggerFactory.CreateLogger<OrderDbContextSeed>();
+        logger.LogInformation($"OrderDbContext Seed Started");
 
-        try
+        var retryPolicy = Policy.Handle<Exception>()
+                    .WaitAndRetryAsync(
+                       retryCount: MAX_RETRIES,
+                       sleepDurationProvider: times => TimeSpan.FromSeconds(times),
+                       onRetry: (exception, sleepDuration, attemptNumber, context) =>
+                       {
+                           logger.LogError("OrderDbContext Seed error. Retrying in {0}. {1}/{2}", sleepDuration, attemptNumber, MAX_RETRIES);
+                       });
+
+        await retryPolicy.ExecuteAsync(async () =>
         {
-            orderDbContext.Database.Migrate();
+            await orderDbContext.Database.MigrateAsync();
 
-            if (!orderDbContext.Orders.Any())
+            if (!(await orderDbContext.Orders.AnyAsync()))
             {
-                orderDbContext.Orders.AddRange(GetOrders());
+                await orderDbContext.Orders.AddRangeAsync(GetOrders());
 
                 await orderDbContext.SaveChangesAsync();
             }
-        }
-        catch (Exception ex)
-        {
-            if (retryValue < 3)
-            {
-                retryValue++;
-
-                var logger = loggerFactory.CreateLogger<OrderDbContextSeed>();
-                logger.LogError($"OrderDbContext Seed Faild. Inner Exception : {ex.InnerException}");
-                await SeedAsync(orderDbContext, loggerFactory, retryValue);
-            }
-        }
+        });
     }
 
     private static IEnumerable<Domain.Entities.Order> GetOrders()
