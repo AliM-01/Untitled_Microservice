@@ -20,7 +20,7 @@ public class CatalogDbContext : ICatalogDbContext
 
         Products = db.GetCollection<Product>(_settings.CollectionName);
 
-        CatalogDbContextSeed.SeedData(Products);
+        CatalogDbContextSeed.SeedDataAsync(Products).Wait();
     }
 
     #endregion
