@@ -8,8 +8,8 @@ services:
       - "5672:5672"
       - "15672:15672"
 
-  um_catalog_db:
-    container_name: um_catalog_db
+  um_product_db:
+    container_name: um_product_db
     restart: always
     ports:
       - "27017:27017"
@@ -30,14 +30,14 @@ services:
     ports:
       - "1400:1433"
 
-  um_catalog_api:
-    container_name: um_catalog_api
+  um_product_api:
+    container_name: um_product_api
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - "CatalogDbSettings:Host=um_catalog_db"
+      - "ProductDbSettings:Host=um_product_db"
     depends_on:
-      - um_catalog_db
+      - um_product_db
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https/:/root/.aspnet/https/
@@ -83,7 +83,7 @@ services:
     ports:
       - "7000:80"
     depends_on:
-      - um_catalog_api
+      - um_product_api
       - um_basket_api
       - um_order_api
     volumes:

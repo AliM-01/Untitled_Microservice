@@ -6,8 +6,8 @@ services:
     container_name: um_rabbit_mq
     image: rabbitmq:3-management-alpine
 
-  um_catalog_db:
-    container_name: um_catalog_db
+  um_product_db:
+    container_name: um_product_db
     image: mongo
 
   um_basket_db:
@@ -18,12 +18,12 @@ services:
     container_name: um_order_db
     image: mcr.microsoft.com/mssql/server:2017-latest
 
-  um_catalog_api:
-    container_name: um_catalog_api
-    image: ${DOCKER_REGISTRY-}um_catalogapi
+  um_product_api:
+    container_name: um_product_api
+    image: ${DOCKER_REGISTRY-}um_productapi
     build:
       context: .
-      dockerfile: src/Catalog/Catalog.Api/Dockerfile
+      dockerfile: src/product/product.Api/Dockerfile
 
   um_basket_api:
     container_name: um_basket_api

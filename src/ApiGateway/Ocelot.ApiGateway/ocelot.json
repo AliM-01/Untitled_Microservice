@@ -2,44 +2,44 @@
   "Routes": [
 
     {
-      "DownstreamPathTemplate": "/api/v1/catalog",
+      "DownstreamPathTemplate": "/api/v1/Product",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_catalog_api",
+          "Host": "um_Product_api",
           "Port": "80"
         }
       ],
 
-      "UpstreamPathTemplate": "/catalog",
+      "UpstreamPathTemplate": "/Product",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
 
     },
     {
-      "DownstreamPathTemplate": "/api/v1/catalog/{id}",
+      "DownstreamPathTemplate": "/api/v1/Product/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_catalog_api",
+          "Host": "um_Product_api",
           "Port": "80"
         }
       ],
 
-      "UpstreamPathTemplate": "/catalog/{id}",
+      "UpstreamPathTemplate": "/Product/{id}",
       "UpstreamHttpMethod": [ "Get", "Delete" ]
 
     },
     {
-      "DownstreamPathTemplate": "/api/v1/catalog/product/{category}",
+      "DownstreamPathTemplate": "/api/v1/Product/product/{category}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_catalog_api",
+          "Host": "um_Product_api",
           "Port": "80"
         }
       ],
 
-      "UpstreamPathTemplate": "/catalog/product/{category}",
+      "UpstreamPathTemplate": "/Product/product/{category}",
       "UpstreamHttpMethod": [ "Get" ]
 
     },
