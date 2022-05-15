@@ -1323,7 +1323,9 @@ h1, h2, h3, h4, h5, h6 {
 	color: #222222;
 	line-height: 80px;
 	font-weight: 600;
+	font-size: 23px;
 }
+
 .header_area .navbar .nav.navbar-nav.navbar-right .search {
 	background: transparent;
 	border: 0;
@@ -1474,14 +1476,11 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 50%;
 	box-shadow: 0 10px 20px rgba(255, 108, 0, 0.2);
 }
+
 .add-bag .add-btn span {
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
 	display: inline-block;
 	color: #fff;
+	font-size: 18px;
 }
 .add-bag .add-text {
 	padding-left: 15px;

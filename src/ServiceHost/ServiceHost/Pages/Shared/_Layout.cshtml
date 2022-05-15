@@ -9,13 +9,11 @@
     <link rel="shortcut icon" href="img/fav.png">
     <title>@ViewData["Title"] - Untitled Microservice</title>
 
-    <link rel="stylesheet" href="~/css/linearicons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/owl.carousel.css">
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/themify-icons.css">
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="~/css/nice-select.css">
     <link rel="stylesheet" href="~/css/nouislider.min.css">
-    <link rel="stylesheet" href="~/css/bootstrap.css">
     <link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
 
     @await RenderSectionAsync("Styles", required: false)
@@ -67,9 +65,9 @@
 								</ul>
 							</li></ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="#" class="cart"><span class="la la-shopping-cart"></span></a></li>
 							<li class="nav-item">
-								<button id="search_btn" class="search" type="button"><span class="lnr lnr-magnifier"></span></button>
+								<button id="search_btn" class="search" type="button"><span class="la la-search"></span></button>
 							</li>
 						</ul>
 					</div>
@@ -81,7 +79,7 @@
 				<form class="d-flex justify-content-between">
 					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
 					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+					<span class="la la-plus" id="close_search" title="Close Search"></span>
 				</form>
 			</div>
 		</div>
@@ -95,9 +93,8 @@
 		<p class="footer-text m-0"><i> &copy;</i> Untitled Microservice</p>
 	</footer>
 
-	<script src="~/js/vendor/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="~/js/vendor/bootstrap.min.js"></script>
+	<script src="~/js/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 	<script src="~/js/jquery.ajaxchimp.min.js"></script>
 	<script src="~/js/jquery.nice-select.min.js"></script>
 	<script src="~/js/jquery.sticky.js"></script>
