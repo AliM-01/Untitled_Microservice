@@ -14,6 +14,13 @@ public static class ServiceRegister
 
         services.AddRazorPages();
 
+        services.Configure<RouteOptions>(options =>
+        {
+            options.LowercaseUrls = true;
+            options.LowercaseQueryStrings = true;
+            options.AppendTrailingSlash = true;
+        });
+
         return services;
     }
 
