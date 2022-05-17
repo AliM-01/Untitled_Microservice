@@ -1,6 +1,8 @@
-﻿namespace ServiceHost.Services.Interfaces;
+﻿using ServiceHost.ViewModels.Order;
+
+namespace ServiceHost.Services.Interfaces;
 
 public interface IOrderService
 {
-    Task<IEnumerable<OrderResponseModel>> GetOrdersByUserName(string userName);
+    Task<IEnumerable<OrderViewModel>> GetOrdersByUserName(string userName);
 }

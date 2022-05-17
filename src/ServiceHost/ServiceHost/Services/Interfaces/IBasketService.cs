@@ -1,8 +1,10 @@
-﻿namespace ServiceHost.Services.Interfaces;
+﻿using ServiceHost.ViewModels.Basket;
+
+namespace ServiceHost.Services.Interfaces;
 
 public interface IBasketService
 {
-    Task<BasketModel> GetBasket(string userName);
-    Task<BasketModel> UpdateBasket(BasketModel model);
-    Task CheckoutBasket(BasketCheckoutModel model);
+    Task<BasketViewModel> GetBasket(string userName);
+    Task<BasketViewModel> UpdateBasket(BasketViewModel basket);
+    Task CheckoutBasket(BasketCheckoutViewModel basketCheckout);
 }

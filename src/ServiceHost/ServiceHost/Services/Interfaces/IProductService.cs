@@ -1,9 +1,11 @@
-﻿namespace ServiceHost.Services.Interfaces;
+﻿using ServiceHost.ViewModels.Product;
+
+namespace ServiceHost.Services.Interfaces;
 
 public interface IProductService
 {
-    Task<IEnumerable<ProductModel>> GetProduct();
-    Task<IEnumerable<ProductModel>> GetProductByCategory(string category);
-    Task<ProductModel> GetProduct(string id);
-    Task<ProductModel> CreateProduct(ProductModel model);
+    Task<IEnumerable<ProductViewModel>> GetProduct();
+    Task<IEnumerable<ProductViewModel>> GetProductByCategory(string category);
+    Task<ProductViewModel> GetProduct(string id);
+    Task<ProductViewModel> CreateProduct(ProductViewModel product);
 }
