@@ -1,4 +1,5 @@
-﻿using Polly;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Polly;
 using Polly.Extensions.Http;
 
 namespace ServiceHost;
@@ -20,6 +21,11 @@ public static class ServiceRegister
             options.LowercaseQueryStrings = true;
             options.AppendTrailingSlash = true;
         });
+
+        services.AddHealthChecks()
+                .AddUrlGroup(new Uri(config["ApiSettings:GatewayAddress"]),
+                             "Ocelot API Gateway",
+                             HealthStatus.Degraded);
 
         return services;
     }
