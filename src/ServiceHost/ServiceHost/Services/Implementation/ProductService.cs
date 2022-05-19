@@ -1,5 +1,4 @@
 ﻿using ServiceHost.Services.Extensions;
-using ServiceHost.Services.Interfaces;
 using ServiceHost.ViewModels.Product;
 
 namespace ServiceHost.Services.Implementation;

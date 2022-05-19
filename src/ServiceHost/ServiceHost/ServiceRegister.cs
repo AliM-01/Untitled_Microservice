@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Polly;
 using Polly.Extensions.Http;
+using ServiceHost.Services.Implementation;
 
 namespace ServiceHost;
 
@@ -11,7 +12,7 @@ public static class ServiceRegister
         services.AddHttpClient("ApiGateway",
                                c => c.BaseAddress = new Uri(config["ApiSettings:GatewayAddress"]))
                 .AddPolicyHandler(GetRetryPolicy())
-                .AddPolicyHandler(GetCircuitBreakerPolicy()); ;
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
 
         services.AddRazorPages();
 
@@ -26,6 +27,10 @@ public static class ServiceRegister
                 .AddUrlGroup(new Uri(config["ApiSettings:GatewayAddress"]),
                              "Ocelot API Gateway",
                              HealthStatus.Degraded);
+
+        services.AddTransient<IProductService, ProductService>();
+        services.AddTransient<IOrderService, OrderService>();
+        services.AddTransient<IBasketService, BasketService>();
 
         return services;
     }
