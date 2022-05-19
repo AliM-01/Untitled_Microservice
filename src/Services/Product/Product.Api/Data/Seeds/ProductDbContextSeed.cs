@@ -29,30 +29,39 @@ public static class ProductDbContextSeed
         {
             new Entities.Product
             {
-                Title = "IPHONE 13",
+                Title = "iPhone 13",
                 Price = new Random().Next(750, 1200),
                 Category = "Smart Phone",
                 Summary = "Lorem ipsum dolor sit amet, consectetur adipiscing",
                 Description = description,
-                ImagePath = "iphone_13.jpg"
+                ImagePath = "c356912346ad44a1bb6e05ac4fcd60f7.png"
             },
             new Entities.Product
             {
-                Title = "IPHONE 12",
+                Title = "iPhone 12",
                 Price = new Random().Next(750, 1200),
                 Category = "Smart Phone",
                 Summary = "Lorem ipsum dolor sit amet, consectetur adipiscing",
                 Description = description,
-                ImagePath = "iphone_12.jpg"
+                ImagePath = "93081292877443cea88c44dcf8ded546.png"
             },
             new Entities.Product
             {
-                Title = "IPHONE 11",
+                Title = "iPhone SE",
                 Price = new Random().Next(750, 1200),
                 Category = "Smart Phone",
                 Summary = "Lorem ipsum dolor sit amet, consectetur adipiscing",
                 Description = description,
-                ImagePath = "iphone_11.jpg"
+                ImagePath = "e031f20db3b745218065b144a4595a92.png"
+            },
+            new Entities.Product
+            {
+                Title = "iPhone 11",
+                Price = new Random().Next(750, 1200),
+                Category = "Smart Phone",
+                Summary = "Lorem ipsum dolor sit amet, consectetur adipiscing",
+                Description = description,
+                ImagePath = "853990cf3e1044429dfbd994a428d786.png"
             }
         };
     }
