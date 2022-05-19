@@ -18,7 +18,7 @@ public class ProductService : IProductService
 
     #region GetProduct
 
-    public async Task<IEnumerable<ProductViewModel>> GetProduct()
+    public async Task<IEnumerable<ProductViewModel>> GetProducts()
     {
         return await _client.GetFromJsonAsync<List<ProductViewModel>>("/product");
     }
