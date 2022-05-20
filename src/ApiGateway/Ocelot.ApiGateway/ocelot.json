@@ -6,7 +6,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_Product_api",
+          "Host": "um_product_api",
           "Port": "80"
         }
       ],
@@ -20,7 +20,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_Product_api",
+          "Host": "um_product_api",
           "Port": "80"
         }
       ],
@@ -34,12 +34,26 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "um_Product_api",
+          "Host": "um_product_api",
           "Port": "80"
         }
       ],
 
       "UpstreamPathTemplate": "/product/category/{category}",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/info/base-img-path",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_product_api",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/product/path-info",
       "UpstreamHttpMethod": [ "Get" ]
 
     },
@@ -80,7 +94,7 @@
           "Host": "um_basket_api",
           "Port": "80"
         }
-      ], 
+      ],
 
       "UpstreamPathTemplate": "/basket/checkout",
       "UpstreamHttpMethod": [ "Post" ]

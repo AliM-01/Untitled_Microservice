@@ -20,24 +20,24 @@ services:
 
   um_product_api:
     container_name: um_product_api
-    image: ${DOCKER_REGISTRY-}um_productapi
+    image: ${DOCKER_REGISTRY-}um_product_api
     build:
       context: .
-      dockerfile: src/product/product.Api/Dockerfile
+      dockerfile: src/Services/Product/Product.Api/Dockerfile
 
   um_basket_api:
     container_name: um_basket_api
     image: ${DOCKER_REGISTRY-}um_basket_api
     build:
       context: .
-      dockerfile: src/Basket/Basket.Api/Dockerfile
+      dockerfile: src/Services/Basket/Basket.Api/Dockerfile
 
   um_order_api:
     container_name: um_order_api
     image: ${DOCKER_REGISTRY-}um_order_api
     build:
       context: .
-      dockerfile: src/Order/Order.Api/Dockerfile
+      dockerfile: src/Services/Order/Order.Api/Dockerfile
 
   um_ocelot_api_gateway:
     container_name: um_ocelot_api_gateway

@@ -4,10 +4,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/Product/Product.Api/Product.Api.csproj", "src/Product/Product.Api/"]
-RUN dotnet restore "src/Product/Product.Api/Product.Api.csproj"
+COPY ["src/Services/Product/Product.Api/Product.Api.csproj", "src/Services/Product/Product.Api/"]
+RUN dotnet restore "src/Services/Product/Product.Api/Product.Api.csproj"
 COPY . .
-WORKDIR "/src/src/Product/Product.Api"
+WORKDIR "/src/src/Services/Product/Product.Api"
 RUN dotnet build "Product.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
