@@ -37,14 +37,14 @@ public class ProductController : ControllerBase
 
         if (product is null)
         {
-            _logger.LogError($"Product with id: {id} was not found");
+            _logger.LogError("Product with id: {0} was not found", id);
             return NotFound();
         }
 
         return Ok(product);
     }
 
-    [HttpGet("/category/{category}")]
+    [HttpGet("category/{category}")]
     [ProducesResponseType(typeof(Entities.Product), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetProductByCategory(string category)
     {
@@ -52,7 +52,7 @@ public class ProductController : ControllerBase
 
         if (product is null)
         {
-            _logger.LogError($"Product with category: {category} was not found");
+            _logger.LogError("Product with category: {0} was not found", category);
             return NotFound();
         }
 

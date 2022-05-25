@@ -2,16 +2,30 @@
   "Routes": [
 
     {
+      "DownstreamPathTemplate": "/api/v1/info",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "um_product_api",
+          "Port": 80
+        }
+      ],
+
+      "UpstreamPathTemplate": "/info/product",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/product",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "um_product_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
-      "UpstreamPathTemplate": "/Product",
+      "UpstreamPathTemplate": "/product",
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
 
     },
@@ -21,7 +35,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_product_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
@@ -35,25 +49,11 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_product_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
       "UpstreamPathTemplate": "/product/category/{category}",
-      "UpstreamHttpMethod": [ "Get" ]
-
-    },
-    {
-      "DownstreamPathTemplate": "/api/v1/info/base-img-path",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "um_product_api",
-          "Port": "80"
-        }
-      ],
-
-      "UpstreamPathTemplate": "/product/path-info",
       "UpstreamHttpMethod": [ "Get" ]
 
     },
@@ -64,7 +64,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_basket_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
@@ -78,7 +78,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_basket_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
@@ -92,7 +92,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_basket_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 
@@ -107,7 +107,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "um_order_api",
-          "Port": "80"
+          "Port": 80
         }
       ],
 

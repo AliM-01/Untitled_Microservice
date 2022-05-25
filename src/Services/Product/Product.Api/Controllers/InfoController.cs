@@ -4,9 +4,9 @@ namespace Product.Api.Controllers;
 
 [ApiController]
 [Route("api/v1/info")]
-public class InfoController : Controller
+public class InfoController : ControllerBase
 {
-    [HttpGet("base-img-path")]
+    [HttpGet]
     public IActionResult ProductBaseImagePath()
     {
         string baseUrl = $"{Request.Scheme}://{Request.Host}{Url.Content("~/products/")}";
