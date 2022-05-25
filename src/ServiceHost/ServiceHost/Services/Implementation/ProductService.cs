@@ -51,4 +51,16 @@ public class ProductService : IProductService
     }
 
     #endregion
+
+    #region GetProductImageUri
+
+    public async Task<string> GetProductImageUri(string imagePath)
+    {
+        string baseUri = await _client.GetFromJsonAsync<string>("/info/product/");
+
+        return string.Concat(baseUri, imagePath);
+    }
+
+    #endregion
+
 }
