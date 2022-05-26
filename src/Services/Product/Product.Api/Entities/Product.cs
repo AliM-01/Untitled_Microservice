@@ -25,6 +25,6 @@ public class Product
     public string ImagePath { get; set; }
 
     [BsonElement("Price")]
-    public decimal Price { get; set; }
+    public double Price { get; set; }
 }
 

@@ -14,5 +14,5 @@ public class ProductViewModel
 
     public string ImagePath { get; set; }
 
-    public decimal Price { get; set; }
+    public double Price { get; set; }
 }
