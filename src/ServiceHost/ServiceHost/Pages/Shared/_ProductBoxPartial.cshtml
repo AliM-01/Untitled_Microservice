@@ -1,6 +1,25 @@
 ﻿@model ServiceHost.ViewModels.Product.ProductViewModel
 
 @inject IProductService _productService
+@inject IBasketService _basketService
+
+@functions {
+	public async Task AddToCart()
+    {
+        string userName = "a";
+        var basket = await _basketService.GetBasket(userName);
+
+        basket.Items.Add(new ViewModels.Basket.BasketItemViewModel
+        {
+            ProductId = Model.Id,
+            ProductTitle = Model.Title,
+            Price = Model.Price,
+            Quantity = 1
+        });
+
+        await _basketService.UpdateBasket(basket);
+    }
+}
 
 <div class="single-product">
 	<a asp-page="ProductDetail" asp-route-productId="@Model.Id"> 
@@ -14,13 +33,10 @@
 			<h6>@Model.Price</h6>
 		</div>
 		<div class="prd-bottom">
-			<form asp-page-handler="AddToCart" method="post" name="addToCartForm" id="add_cart_form">
-				<a href="javascript:;" onclick="parentNode.submit();" class="social-info">
+				<a href="javascript:;" onclick="@AddToCart" class="social-info">
 					<span class="la la-shopping-cart"></span>
 					<p class="hover-text">Add to Cart</p>
 				</a>
-				<input type="hidden" asp-for="@Model.Id" name="productId" />
-            </form>
 		</div>
 	</div>
 </div>

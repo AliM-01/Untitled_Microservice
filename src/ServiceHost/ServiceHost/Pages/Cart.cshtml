@@ -4,20 +4,21 @@
     ViewData["Title"] = "Cart";
 }
 
+@inject IProductService _productService
 
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Shopping Cart</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="la la-arrow-right"></span></a>
-                        <a href="category.html">Cart</a>
-                    </nav>
-                </div>
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shopping Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="la la-arrow-right"></span></a>
+                    <a href="category.html">Cart</a>
+                </nav>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="cart_area">
         <div class="container">
@@ -36,7 +37,7 @@
                             @foreach (var cartItem in Model.Cart.Items)
                             {
                             <tr>
-                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
+                                <td><img src="@_productService.GetProductImageUriFromId(cartItem.ProductId)" /></td>
                                 <td>@cartItem.ProductTitle</td>
                                 <td>In stock</td>
                                 <td><input class="form-control" type="text" value="@cartItem.Quantity" /></td>

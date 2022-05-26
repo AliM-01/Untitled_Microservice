@@ -6,12 +6,10 @@ namespace ServiceHost.Pages;
 public class ProductsModel : PageModel
 {
     private readonly IProductService _productService;
-    private readonly IBasketService _basketService;
 
-    public ProductsModel(IProductService productService, IBasketService basketService)
+    public ProductsModel(IProductService productService)
     {
         _productService = productService;
-        _basketService = basketService;
 
         Show = 10;
     }

@@ -9,4 +9,5 @@ public interface IProductService
     Task<ProductViewModel> GetProduct(string id);
     Task<ProductViewModel> CreateProduct(ProductViewModel product);
     Task<string> GetProductImageUri(string imagePath);
+    Task<string> GetProductImageUriFromId(string productId);
 }
