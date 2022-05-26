@@ -116,10 +116,14 @@
 					</div>
 				</div>
 				<div class="row">
+
 					@foreach (var product in Model.Products.Take(4))
-                    {
-						<partial name="_ProductItemPartial" model="@product" />
-                    }
+					{
+						<div class="col-lg-3 col-md-6">
+							<partial name="_ProductItemPartial" model="@product" />
+						</div>
+					}
+
 				</div>
 			</div>
 	</div>
@@ -138,9 +142,11 @@
 				</div>
 				<div class="row">
 					@foreach (var product in Model.Products.Take(4))
-                    {
-						<partial name="_ProductItemPartial" model="@product" />
-                    }
+					{
+						<div class="col-lg-3 col-md-6">
+							<partial name="_ProductItemPartial" model="@product" />
+						</div>
+					}
 				</div>
 			</div>
 	</div>

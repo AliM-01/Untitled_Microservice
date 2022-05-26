@@ -1,7 +1,7 @@
 ﻿@page "/p/{productId}"
 @model ServiceHost.Pages.ProductDetailModel
 @{
-    ViewData["Title"] = "ProductDetail";
+    ViewData["Title"] = Model.Product.Title;
 }
 
 @functions {
