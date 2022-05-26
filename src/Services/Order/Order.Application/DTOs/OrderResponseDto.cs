@@ -13,13 +13,13 @@ public class OrderResponseDto
 
     public string Email { get; set; }
 
-    public string CardName { get; set; }
+    //public string CardName { get; set; }
 
-    public string CardNumber { get; set; }
+    //public string CardNumber { get; set; }
 
-    public string CardExpr { get; set; }
+    //public string CardExpr { get; set; }
 
-    public string CVV { get; set; }
+    //public string CVV { get; set; }
 
-    public int PaymentMethod { get; set; }
+    //public int PaymentMethod { get; set; }
 }
