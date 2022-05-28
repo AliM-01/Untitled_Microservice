@@ -56,6 +56,8 @@ public class ProductService : IProductService
 
     public async Task<string> GetProductImageUri(string imagePath)
     {
+        var res = await _client.GetAsync("/info/product/");
+
         string baseUri = await _client.GetFromJsonAsync<string>("/info/product/");
 
         return string.Concat(baseUri, imagePath);
@@ -67,7 +69,9 @@ public class ProductService : IProductService
 
     public async Task<string> GetProductImageUriFromId(string productId)
     {
-        var product = await GetProduct(productId);
+        var res = await _client.GetAsync("/info/product/");
+        
+        var product = GetProduct(productId).Result;
 
         string baseUri = await _client.GetFromJsonAsync<string>("/info/product/");
 

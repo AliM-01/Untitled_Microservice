@@ -46,3 +46,11 @@ services:
       context: .
       dockerfile: src/ApiGateway/Ocelot.ApiGateway/Dockerfile
 
+
+  um_service_host:
+    container_name: um_service_host
+    image: ${DOCKER_REGISTRY-}um_service_host
+    build:
+      context: .
+      dockerfile: src/ServiceHost/ServiceHost/Dockerfile
+

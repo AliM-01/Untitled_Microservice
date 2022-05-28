@@ -2,7 +2,9 @@
 
 @inject IProductService _productService
 @inject IBasketService _basketService
-
+@{
+	string imagePath = await _productService.GetProductImageUri(Model.ImagePath);
+}
 @functions {
 	public async Task AddToCart()
     {
@@ -23,7 +25,7 @@
 
 <div class="single-product">
 	<a asp-page="ProductDetail" asp-route-productId="@Model.Id"> 
-		<img class="img-fluid" src="@_productService.GetProductImageUri(Model.ImagePath)" alt="@Model.Title">
+		<img class="img-fluid" src="@imagePath" alt="@Model.Title">
 	</a>
 	<div class="product-details">
 		<a asp-page="ProductDetail" asp-route-productId="@Model.Id">

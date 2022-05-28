@@ -120,7 +120,7 @@
 					@foreach (var product in Model.Products.Take(4))
 					{
 						<div class="col-lg-3 col-md-6">
-							<partial name="_ProductItemPartial" model="@product" />
+							<partial name="_ProductBoxPartial" model="@product" />
 						</div>
 					}
 
@@ -144,7 +144,7 @@
 					@foreach (var product in Model.Products.Take(4))
 					{
 						<div class="col-lg-3 col-md-6">
-							<partial name="_ProductItemPartial" model="@product" />
+							<partial name="_ProductBoxPartial" model="@product" />
 						</div>
 					}
 				</div>

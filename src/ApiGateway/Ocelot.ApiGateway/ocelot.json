@@ -12,7 +12,7 @@
       ],
 
       "UpstreamPathTemplate": "/info/product",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+      "UpstreamHttpMethod": [ "Get" ]
 
     },
     {
